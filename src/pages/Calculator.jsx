@@ -34,15 +34,17 @@ export default function Calculator() {
     const total = Math.round((basePrice + featuresPrice) * quality.multiplier);
 
     const message = [
-      `Привет! Хочу получить смету на проект.`,
+      `Здравствуйте! Я хотел бы запросить расценки на проект.`,
       ``,
-      `Тип проекта: ${projectType?.label || 'Не выбран'}`,
-      `Дополнения: ${features.length > 0 ? features.map(f => f.label).join(', ') : 'Нет'}`,
+      `Тип проекта: ${projectType?.label || 'Не выбрано'}`,
+      `Особенности: ${features.length > 0 ? features.map(f => f.label).join(', ') : 'Ничего'}`,
       `Качество: ${quality.label} (×${quality.multiplier})`,
-      `Примерный бюджет: €${total.toLocaleString()}`,
+      `Предполагаемый бюджет: €${total.toLocaleString()}`,
     ].join('\n');
 
-    alert(message);
+    const phone = '358414994207';
+    const encoded = encodeURIComponent(message);
+    window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
   };
 
   return (
